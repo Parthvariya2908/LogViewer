@@ -14,7 +14,12 @@ const { join } = require("node:path");
 const { readFile } = require("node:fs/promises");
 const { resolve } = require("node:path");
 
-const currentpath = join(__dirname, "\\logs");
+const logsDirectory =
+  process.env.LOGS_DIRECTORY ||
+  "C:\\Users\\Parth\\Desktop\\FOLDER VIEWR ONLY BACKEND\\logs";
+
+const currentpath = join(logsDirectory);
+
 const makeDirectory = async (DirName) => {
   const projectFolder = join(currentpath, DirName);
   const dirCreation = await mkdir(projectFolder, { recursive: true });
