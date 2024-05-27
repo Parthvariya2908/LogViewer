@@ -3,8 +3,7 @@ const cors = require("cors");
 const bodyparser = require("body-parser");
 const fs = require("fs");
 const app = express();
-const port = 5500;
-const host = "127.0.0.1";
+const port = process.env.PORT || 5500;
 const path = require("path");
 
 app.use(cors());
@@ -123,6 +122,6 @@ app.get("/file/", (req, res) => {
   });
 });
 
-app.listen(5500, () => {
+app.listen(port, () => {
   console.log("LISTINING ON PORT", 5500);
 });
