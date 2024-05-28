@@ -66,7 +66,7 @@ const cheakForTheMonth = (folders) => {
 //   }
 // };
 
-app.get("\\logs", async (req, res) => {
+app.get("/logs/", async (req, res) => {
   const requestedPath = req.query.path || "";
   const currentDir = path.join(currentpath, requestedPath);
   fs.readdir(currentDir, { withFileTypes: true }, (err, files) => {
