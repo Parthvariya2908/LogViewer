@@ -5,7 +5,7 @@ const fs = require("fs");
 const app = express();
 const port = process.env.PORT || 5500;
 const path = require("path");
-
+const host = "127.0.0.1";
 app.use(cors());
 app.use(bodyparser.json());
 
@@ -67,6 +67,10 @@ const cheakForTheMonth = (folders) => {
 // };
 
 app.get("/logs/", async (req, res) => {
+  if (!cheakDirectory("logs")) {
+    const projectFolder = join(currentpath, "logs");
+    const dirCreation = await mkdir(projectFolder, { recursive: true });
+  }
   const requestedPath = req.query.path || "";
   const currentDir = path.join(currentpath, requestedPath);
   fs.readdir(currentDir, { withFileTypes: true }, (err, files) => {
@@ -127,6 +131,6 @@ app.get("/file/", (req, res) => {
   });
 });
 
-app.listen(port, () => {
+app.listen(port, host, () => {
   console.log("LISTINING ON PORT", 5500);
 });
