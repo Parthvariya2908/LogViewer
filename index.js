@@ -55,6 +55,7 @@ const cheakForTheMonth = () => {
 app.use((req, res, next) => {
   const reqpath = req.url;
   const dirs = reqpath.split("/");
+  console.log(req);
   if (dirs[1] == "logs") {
     console.log(dirs);
     if (dirs[dirs.length - 1].slice(-4) == ".log") {
